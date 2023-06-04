@@ -121,7 +121,7 @@ function modifiedAgeWithoutChangingInput(inputEmployeData, targetID, newAge) {
     }
     return newObj;
 }
-// Note on this Structure Clone>  Copying a value in JavaScript affect lile>  changes to deeply nested values will be visible in the copy as well as the original. by using clone Adding or changing a property directly on the shallow copy will only affect the clone, not the original. But we change the value of orginal one's value then the value of clone will also change.
+// Note on this Structure Clone>  Copying a value in JavaScript affect like>  changes to deeply nested values will be visible in the copy as well as the original. by using clone Adding or changing a property directly on the shallow copy will only affect the clone, not the original. But we change the value of orginal one's value then the value of clone will also change.
 
 console.log(findingSumOfAllAge(employees))
 console.log(usersLessThen20(employees));

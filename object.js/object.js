@@ -7,7 +7,8 @@
 // task 4: get all the users from city ctg and country bd
 
 
-// task-1
+// task-1>>count all ages of all users
+
 
 function findingSumOfAllAge(inputEmployeData) {
     let totalSum = 0;
@@ -16,6 +17,17 @@ function findingSumOfAllAge(inputEmployeData) {
 
     }
     return totalSum;
+}
+
+//   task-2>>get all the users age less than 20
+function usersLessThen20(inputEmployeData) {
+    let newObjwithLessThenAgeOf20 = {}
+    for (let x in inputEmployeData) {
+        if (inputEmployeData[x].info.age < 20) {
+            newObjwithLessThenAgeOf20[x] = inputEmployeData[x];
+        }
+    }
+    return newObjwithLessThenAgeOf20;
 }
 
 
@@ -46,7 +58,7 @@ const employees = {
         id: 3,
         name: 'c',
         info: {
-            age: 39,
+            age: 13,
             address: {
                 city: 'ctg',
                 country: 'bd'
@@ -66,6 +78,7 @@ const employees = {
     }
 }
 console.log(findingSumOfAllAge(employees))
+console.log(usersLessThen20(employees));
 // console.log(employees[1].info.age)
 
 

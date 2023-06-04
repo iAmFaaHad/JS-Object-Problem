@@ -31,6 +31,19 @@ function usersLessThen20(inputEmployeData) {
 }
 
 
+// task 3: get all the users that are not from country bd
+
+function employeesWithOutBD(inputEmployeData) {
+    let outSideBDEmployees = {};
+    for (let x in inputEmployeData) {
+        if (inputEmployeData[x].info.address.country !== "bd") {
+            outSideBDEmployees[x] = inputEmployeData[x];
+        }
+    }
+    return outSideBDEmployees;
+}
+
+
 const employees = {
     1: {
         id: 1,
@@ -38,8 +51,8 @@ const employees = {
         info: {
             age: 19,
             address: {
-                city: 'ctg',
-                country: 'bd'
+                city: 'Dubai',
+                country: 'UAE'
             }
         }
     },
@@ -79,6 +92,7 @@ const employees = {
 }
 console.log(findingSumOfAllAge(employees))
 console.log(usersLessThen20(employees));
+console.log(employeesWithOutBD(employees));
 // console.log(employees[1].info.age)
 
 

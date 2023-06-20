@@ -171,19 +171,19 @@ function isanagram(inputString1, inputString2) {
     let isMatch = false;
     let newObj = {};
     let newObj2 = {};
-    for (let i = 0; i < inputString1.length; i++) {
-        newObj[inputString1[i]] = 0;
-        for (let j = 0; j < inputString1.length; j++) {
-            if (inputString1[i] === inputString1[j]) {
-                newObj[inputString1[i]]++;
+    for (let outerIndex = 0; outerIndex < inputString1.length; outerIndex++) {
+        newObj[inputString1[outerIndex]] = 0;
+        for (let innerIndex = 0; innerIndex < inputString1.length; innerIndex++) {
+            if (inputString1[outerIndex] === inputString1[innerIndex]) {
+                newObj[inputString1[outerIndex]]++;
             }
         }
     }
-    for (let i = 0; i < inputString2.length; i++) {
-        newObj2[inputString2[i]] = 0;
-        for (let j = 0; j < inputString2.length; j++) {
-            if (inputString2[i] === inputString2[j]) {
-                newObj2[inputString2[i]]++;
+    for (let outerIndex = 0; outerIndex < inputString2.length; outerIndex++) {
+        newObj2[inputString2[outerIndex]] = 0;
+        for (let innerIndex = 0; innerIndex < inputString2.length; innerIndex++) {
+            if (inputString2[outerIndex] === inputString2[innerIndex]) {
+                newObj2[inputString2[outerIndex]]++;
             }
         }
     }
@@ -221,22 +221,22 @@ function isTheStringMatch(str1, str2) {
         return false;
     }
 
-    for (let i = 0; i < str1.length; i++) {
-        if (str1[i] in newObjstr1) {
-            newObjstr1[str1[i]]++;
+    for (let outerIndex = 0; outerIndex < str1.length; outerIndex++) {
+        if (str1[outerIndex] in newObjstr1) {
+            newObjstr1[str1[outerIndex]]++;
         }
         else {
-            newObjstr1[str1[i]] = 1
+            newObjstr1[str1[outerIndex]] = 1
         }
 
     }
     console.log(newObjstr1)
-    for (let i = 0; i < str2.length; i++) {
-        if (str2[i] in newObjstr1) {
+    for (let outerIndex = 0; outerIndex < str2.length; outerIndex++) {
+        if (str2[outerIndex] in newObjstr1) {
             //  to check anything that exist in a object we must use "in" . 
             // (str2[i] in newObjstr1) means "is str2[i] is exist in  newObjstr1"
-            if (newObjstr1[str2[i]] > 0) {
-                newObjstr1[str2[i]]--;
+            if (newObjstr1[str2[outerIndex]] > 0) {
+                newObjstr1[str2[outerIndex]]--;
 
                 // to access into object's keys one by one using must use[] bracet. If you don't use this it will only shown the first elemet , the rest will not be look. newObjstr1> [ >str2[i]> ]
 
@@ -360,8 +360,8 @@ function nestyObjManipulation(inputObject) {
             // first element of objArr is [[450, 2], [550, 1]] = 450, we are comparing 450 with 550, as we are sorting from large to small, we use y(550)-x(450) if we sort  small to large we use x(450)-y(550)
         });
     }
-    for (let i = 0; i < objArr.length; i++) {
-        const item = objArr[i]
+    for (let outerIndex = 0; iouterIndex < objArr.length; outerIndex++) {
+        const item = objArr[outerIndex]
         // we use array's index as item , [670, 4] is an item which has two element 0,1
         for (let x in newObj) {
             if (newObj[x].info.number === item[0]) {

@@ -237,9 +237,9 @@ function isTheStringMatch(str1, str2) {
             // (str2[i] in newObjstr1) means "is str2[i] is exist in  newObjstr1"
             if (newObjstr1[str2[i]] > 0) {
                 newObjstr1[str2[i]]--;
-                 
+
                 // to access into object's keys one by one using must use[] bracet. If you don't use this it will only shown the first elemet , the rest will not be look. newObjstr1> [ >str2[i]> ]
-            
+
             }
             else {
                 return false;;
@@ -258,6 +258,130 @@ console.log(isTheStringMatch("rahimm", "rahimn"))
 
 
 
-// task 8- Recurssion overlook
-// task 9- Create a function , where orginal inputed object will be same even after we change the object for output
+// task 8- Recurssion
+// means when a function calls itself inside from its own body , then its called recurssion. Its suitable for small function, but if we use it for big function which is working on large number then its not suitable.
+
+// findoutFactorial using recurssion
+function findoutFactorial(n) {
+    if (n === 0) {
+        return 1;
+    }
+    else {
+        return n * findoutFactorial(n - 1);
+    }
+}
+console.log(findoutFactorial(4))
+
+// loop vs recurssion
+// The main difference between recursion and loop is that recursion is a mechanism to call a function within the same function while loop is a control structure that helps to execute a set of instructions again and again until the given condition is true.
+// recurssion  use stack>  A stack is an ordered collection of items that follow the Last In First Out (LIFO) principle. The addition and removal of items take place at the same end, i.e. at the top. The newest elements are at the top, and the oldest elements are at the bottom.
+
+
+
+
+// Task-9 how to called one function inside the other function
+
+function test23(in1, in2) {
+    let sum = in1 + in2;
+    return sum;
+    // going to call it into another function
+}
+function multi(n, in1 = 2, in2 = 3) {
+    // here int1=2, int2=3 is by deffult... if you provide the value of in1 it will execute with the given  value , in case you miss that then it will use 2/3
+    return n * test23(in1, in2);
+    // in returning the final output , we have 2 option,
+    //  one: either we directly put a value which will not be changed like
+    // return n * test23(5, 6);
+    // or use console.log(multi(5, 5 , 6));
+}
+console.log(multi(5, 6, 7));
+
+//   if we want to call a function inside another function, we can not console the first one function, then put it into other function with pere meter, we have few options regarding the input of peremeter.
+// 1> we can use direct input
+// 2> or use input peremeter into 2nd function's console.
+//  we can also use some tricks, if we don't provide any input, we can set defult peremeter, in case one miss the peremeter.
+
+
+
+// task 10 Create a function , make  deep copy the function,where orginal inputed object will be same even after we change the object for output
+// task-11 change the roll number according to the number they got in exam
+
+let nestyObj = {
+    1: {
+        roll: 1,
+        name: 'karim',
+        info: {
+            age: 11,
+            number: 550
+        }
+    },
+    2: {
+        roll: 2,
+        name: 'rahim',
+        info: {
+            age: 12,
+            number: 440,
+        }
+    },
+    3: {
+        roll: 3,
+        name: 'akram',
+        info: {
+            age: 13,
+            number: 600,
+        }
+    },
+    4: {
+        roll: 4,
+        name: 'arman',
+        info: {
+            age: 12,
+            number: 670,
+        }
+    },
+    3: {
+        roll: 3,
+        name: 'akram',
+        info: {
+            age: 13,
+            number: 600,
+        }
+    },
+}
+function nestyObjManipulation(inputObject) {
+    // deep copy through Json
+    let newObj = JSON.parse(JSON.stringify(inputObject));
+    let objArr = []
+    // sort highest numbers
+    for (let x in newObj) {
+        objArr.push([newObj[x].info.number, newObj[x].roll])
+        objArr.sort(function (x, y) {
+            return y[0] - x[0];
+            // first element of objArr is [[450, 2], [550, 1]] = 450, we are comparing 450 with 550, as we are sorting from large to small, we use y(550)-x(450) if we sort  small to large we use x(450)-y(550)
+        });
+    }
+    for (let i = 0; i < objArr.length; i++) {
+        const item = objArr[i]
+        // we use array's index as item , [670, 4] is an item which has two element 0,1
+        for (let x in newObj) {
+            if (newObj[x].info.number === item[0]) {
+                newObj[x].roll = i + 1;
+            }
+        }
+    }
+
+    console.log(objArr);
+    // [[670, 4], [600, 3], [550, 1], [450, 2]]
+
+
+
+    return newObj;
+}
+console.log(nestyObjManipulation(nestyObj));
+// after object manupulation
+console.log(nestyObj);
+// orginal object that we changed
+
+
+
 

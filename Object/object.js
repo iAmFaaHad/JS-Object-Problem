@@ -305,6 +305,7 @@ console.log(multi(5, 6, 7));
 
 // task 10 Create a function , make  deep copy the function,where orginal inputed object will be same even after we change the object for output
 // task-11 change the roll number according to the number they got in exam
+// task-12 change the key according to their roll number ,as they will be in an order
 
 let nestyObj = {
     1: {
@@ -312,7 +313,15 @@ let nestyObj = {
         name: 'karim',
         info: {
             age: 11,
-            number: 550
+            number: 550,
+            address: {
+                hometown: "Dhaka",
+                currentAddress: "Chattagram Sadar"
+            },
+            subject: {
+                favSubject: "Math",
+                disSubject: "G.Sciene"
+            }
         }
     },
     2: {
@@ -321,14 +330,30 @@ let nestyObj = {
         info: {
             age: 12,
             number: 440,
+            address: {
+                hometown: "Chittagong",
+                currentAddress: "Chattagram Sadar"
+            },
+            subject: {
+                favSubject: "G.Sciene",
+                disSubject: "Math"
+            }
         }
     },
-    3: {
-        roll: 3,
-        name: 'akram',
+    31: {
+        roll: 5,
+        name: 'jahir',
         info: {
             age: 13,
             number: 600,
+            address: {
+                hometown: "Chittagong",
+                currentAddress: "Chattagram Sadar"
+            },
+            subject: {
+                favSubject: "Accounting",
+                disSubject: "Math"
+            }
         }
     },
     4: {
@@ -337,17 +362,34 @@ let nestyObj = {
         info: {
             age: 12,
             number: 670,
+            address: {
+                hometown: "Feni",
+                currentAddress: "Chattagram Sadar"
+            },
+            subject: {
+                favSubject: "Math",
+                disSubject: "Accounting"
+            }
         }
     },
-    3: {
+    22: {
         roll: 3,
         name: 'akram',
         info: {
             age: 13,
             number: 600,
+            address: {
+                hometown: "Norail",
+                currentAddress: "Chattagram Sadar"
+            },
+            subject: {
+                favSubject: "G.Sciene",
+                disSubject: "Math"
+            }
         }
-    },
+    }
 }
+
 function nestyObjManipulation(inputObject) {
     // deep copy through Json
     let newObj = JSON.parse(JSON.stringify(inputObject));
@@ -360,21 +402,40 @@ function nestyObjManipulation(inputObject) {
             // first element of objArr is [[450, 2], [550, 1]] = 450, we are comparing 450 with 550, as we are sorting from large to small, we use y(550)-x(450) if we sort  small to large we use x(450)-y(550)
         });
     }
-    for (let outerIndex = 0; iouterIndex < objArr.length; outerIndex++) {
+    // [[670, 4], [600, 3], [600, 5], [550, 1], [450, 2]]
+    for (let outerIndex = 0; outerIndex < objArr.length; outerIndex++) {
         const item = objArr[outerIndex]
+
         // we use array's index as item , [670, 4] is an item which has two element 0,1
         for (let x in newObj) {
-            if (newObj[x].info.number === item[0]) {
-                newObj[x].roll = i + 1;
+            if (item[0] === newObj[x].info.number && item[1] === newObj[x].roll) {
+                newObj[x].roll = outerIndex + 1;
+
+
+                // changed the roll number done-task-1
+
+                // how to complete task-12{id will change according to roll}
+                // 1> {4:{roll:1}, 1:{roll:4}} we will run a condition if the  new roll and id is same? if is not then we will do a condition, x is key and <roll number inside key>  is not same
+                // 2> then we will store the key value which is match with our current roll. In 1 when we worke with id:4 ,we see that roll 1 is match with id:1, if we change the value with out storing id 1 value then it will not be count
+                // 3> then we will change the our intended roll and id which is {4:{roll:1} will turn into {1:{roll:1}
+                // 4>then we will sawap the new id  newObj[x] with matching one
+
+
+                if (x !== newObj[x].roll) {
+                    let temp = newObj[newObj[x].roll]
+                    newObj[newObj[x].roll] = newObj[x]
+                    newObj[x] = temp;
+
+                }
+                // after doing above task we will face a problem if our id is different , means if its not in order like 1-5, if you set a id 31 then it will show 31 undefiend ,because we asign roll through the index number, for avoid this problem we will run a condition that if there is any key which value is undefined then it will delete whole key
+
+                if (newObj[x] === undefined) {
+                    delete newObj[x]
+                }
+                // task - 12 change the key according to their roll number, as they will be in an order >
             }
-        }
+        } 
     }
-
-    console.log(objArr);
-    // [[670, 4], [600, 3], [550, 1], [450, 2]]
-
-
-
     return newObj;
 }
 console.log(nestyObjManipulation(nestyObj));

@@ -301,13 +301,16 @@ console.log(multi(5, 6, 7));
 // 2> or use input peremeter into 2nd function's console.
 //  we can also use some tricks, if we don't provide any input, we can set defult peremeter, in case one miss the peremeter.
 
+//  const newObj ={
+//     "A+":[{},{},{}],
+//     "A:"
+
+//  }
 
 
-// task 10 Create a function , make  deep copy the function,where orginal inputed object will be same even after we change the object for output
-// task-11 change the roll number according to the number they got in exam
-// task-12 change the key according to their roll number ,as they will be in an order
 
-let nestyObj = {
+
+const nestyObj = {
     1: {
         roll: 1,
         name: 'karim',
@@ -316,11 +319,11 @@ let nestyObj = {
             number: 550,
             address: {
                 hometown: "Dhaka",
-                currentAddress: "Chattagram Sadar"
+                currentAddress: "Ambagan"
             },
             subject: {
-                favSubject: "Math",
-                disSubject: "G.Sciene"
+                favSubject: "G.Sciene",
+                disSubject: "Math"
             }
         }
     },
@@ -332,11 +335,11 @@ let nestyObj = {
             number: 440,
             address: {
                 hometown: "Chittagong",
-                currentAddress: "Chattagram Sadar"
+                currentAddress: "Nasirabad"
             },
             subject: {
-                favSubject: "G.Sciene",
-                disSubject: "Math"
+                favSubject: "Math",
+                disSubject: "G.Science"
             }
         }
     },
@@ -348,7 +351,7 @@ let nestyObj = {
             number: 600,
             address: {
                 hometown: "Chittagong",
-                currentAddress: "Chattagram Sadar"
+                currentAddress: "Khulshi"
             },
             subject: {
                 favSubject: "Accounting",
@@ -364,7 +367,7 @@ let nestyObj = {
             number: 670,
             address: {
                 hometown: "Feni",
-                currentAddress: "Chattagram Sadar"
+                currentAddress: "Ambagan"
             },
             subject: {
                 favSubject: "Math",
@@ -372,7 +375,7 @@ let nestyObj = {
             }
         }
     },
-    22: {
+    7: {
         roll: 3,
         name: 'akram',
         info: {
@@ -380,19 +383,55 @@ let nestyObj = {
             number: 600,
             address: {
                 hometown: "Norail",
-                currentAddress: "Chattagram Sadar"
+                currentAddress: "Khulshi"
             },
             subject: {
                 favSubject: "G.Sciene",
                 disSubject: "Math"
             }
         }
+    },
+    44: {
+        roll: 7,
+        name: 'Aman',
+        info: {
+            age: 13,
+            number: 350,
+            address: {
+                hometown: "Cumilla",
+                currentAddress: "Khulshi"
+            },
+            subject: {
+                favSubject: "G.Sciene",
+                disSubject: "Math"
+            }
+        }
+    },
+    44: {
+        roll: 7,
+        name: 'Sakib',
+        info: {
+            age: 12,
+            number: 500,
+            address: {
+                hometown: "Borisal",
+                currentAddress: "Khulshi"
+            },
+            subject: {
+                favSubject: "Math",
+                disSubject: "Accounting"
+            }
+        }
     }
 }
+// task 10 Create a function , make  deep copy the function,where orginal inputed object will be same even after we change the object for output
+// task-11 change the roll number according to the number they got in exam
+// task-12 change the key according to their roll number ,as they will be in an order
 
 function nestyObjManipulation(inputObject) {
     // deep copy through Json
     let newObj = JSON.parse(JSON.stringify(inputObject));
+    //  task 10  deep copy done
     let objArr = []
     // sort highest numbers
     for (let x in newObj) {
@@ -412,7 +451,7 @@ function nestyObjManipulation(inputObject) {
                 newObj[x].roll = outerIndex + 1;
 
 
-                // changed the roll number done-task-1
+                // changed the roll number done-task-11 done
 
                 // how to complete task-12{id will change according to roll}
                 // 1> {4:{roll:1}, 1:{roll:4}} we will run a condition if the  new roll and id is same? if is not then we will do a condition, x is key and <roll number inside key>  is not same
@@ -432,17 +471,89 @@ function nestyObjManipulation(inputObject) {
                 if (newObj[x] === undefined) {
                     delete newObj[x]
                 }
-                // task - 12 change the key according to their roll number, as they will be in an order >
+                // task-12 done> changed the key according to their roll number, as they will be in an order > 
             }
-        } 
+        }
+
     }
     return newObj;
 }
-console.log(nestyObjManipulation(nestyObj));
+// console.log(nestyObjManipulation(nestyObj));
 // after object manupulation
 console.log(nestyObj);
-// orginal object that we changed
+// orginal object are still the same
 
 
+// task-13 show the students whoes fav sub is math and also hometown is chittagong
+function nestyObjManipulation2(targetCity, targetSub) {
+    console.log(nestyObjManipulation(nestyObj))
+    const objectInNewFunction = nestyObjManipulation(nestyObj)
+    let stuObj = {}
+    for (let x in objectInNewFunction) {
+        if (objectInNewFunction[x].info.address.hometown === targetCity && objectInNewFunction[x].info.subject.favSubject === targetSub) {
+            stuObj[x] = objectInNewFunction[x];
+        }
+    }
+    return stuObj;
+}
+console.log(nestyObjManipulation2("Chittagong", "Math"))
 
+
+// task-14 show the students whoes disliked sub is math, hometown is outside  of chittagong
+
+function nestyObjManipulation3(targetSub, targetCity) {
+    let stuObj = {}
+    const objectInNewFunction2 = nestyObjManipulation(nestyObj)
+    for (let x in objectInNewFunction2) {
+        if (objectInNewFunction2[x].info.subject.disSubject === targetSub && objectInNewFunction2[x].info.address.hometown !== targetCity) {
+            stuObj[x] = objectInNewFunction2[x];
+        }
+    }
+    return stuObj;
+}
+console.log(nestyObjManipulation3("Math", "Chittagong"))
+
+
+// task-15 differentiate the student in 3 catagory A+, A, A- according to their  number
+function nestyObjManipulation4() {
+    let category = {
+        "A+ Students": {},
+        "A  Students": {},
+        "A- Students": {}
+    }
+    const objectInNewFunction3 = nestyObjManipulation(nestyObj)
+    for (let objKey in objectInNewFunction3) {
+        // Please use objKey instead of "x", will be more helpful
+
+        // to keep your code more clean , a) you can ignore {} in if condition ,in the time when that condition only work with one single case, b) if that is nested then you must use { }, because it define the condition how far it will go. a reference is given below , b) is line 445 task-10-12
+
+        if (objectInNewFunction3[objKey].info.number >= 600)
+            category["A+ Students"][objKey] = objectInNewFunction3[objKey];
+        // category["A+ Students"][objKey] here we use [objKey] because we will create a key in "A+ Students" object  same name as we use in our orginal nested object. Here we pass the whole key ,just not the keys value
+
+        if (objectInNewFunction3[objKey].info.number >= 500 && objectInNewFunction3[objKey].info.number <= 599)
+            // in this condition if we use normal math equation like ***500<=objectInNewFunction3[objKey].info.number<=599** it will not work because in js at...it will only check the initial condition, for that if something's value is above 500 or equal it will push the key. So solution for that is if you have 2 or many condition to check use && between the condition and it will be more smooth is you use the condition inside the if separatly 
+            category["A  Students"][objKey] = objectInNewFunction3[objKey];
+
+        if (objectInNewFunction3[objKey].info.number < 500)
+            category["A- Students"][objKey] = objectInNewFunction3[objKey];
+
+    }
+    return category;
+}
+
+console.log(nestyObjManipulation4())
+
+
+    // lexical scope {}
+    // console.log(sum())
+
+    // function sum() {
+    //     return 2 + 2
+
+    // }
+
+    // const sub = () => 2 + 4
+    // console.log(sub())
+    // hoisting in js
 

@@ -1,17 +1,12 @@
 // task-1 return the object which has unique id, and when they are created[aditional** add actual time when they are created]
 
 let toDoList = []
-let newObj = []
 function addToDo(inputObject) {
-    newObj.push(inputObject);
     let date = new Date().toJSON();
-    for (let indexOfArray = 0; indexOfArray < newObj.length; indexOfArray++) {
-        // console.log(newObj)
-        for (let key in inputObject) {
-            inputObject.id = 213020 + 1 + indexOfArray
-            inputObject.created_at = { date }
-        }
-    }
+
+    inputObject.id = toDoList.length + 1 + 213020
+    inputObject.created_at = { date }
+
     toDoList.push(inputObject);
     return inputObject
 }
@@ -29,9 +24,14 @@ let inputToList3 = {
     "title": "Book a ticket",
     "description": "book ticket for going home on 10 july by air"
 }
+let inputToList4 = {
+    "title": "Back to Dhaka",
+    "description": "End of vacation",
+}
 console.log(addToDo(inputToList1))
 console.log(addToDo(inputToList2))
 console.log(addToDo(inputToList3))
+console.log(addToDo(inputToList4))
 
 // task-2 edit todo list , you will provide id and the things you want to change, input a object which is consist as many item you want to change, object key is not match with exixting key, please add new key
 function editToDo(inputID, inputObject) {
@@ -48,7 +48,9 @@ console.log(editToDo(213021, { "description": "Assignment must be submited betwe
 
 console.log(editToDo(213023, { "description": "book ticket for going home on 10 july by air, my flight should be on early morning", "title": "Horrah! Going Home" }))
 
-console.log(editToDo(213025, { "title": "Return From home" }))
+// console.log(editToDo(213024, { "title": "Return From home", "description": "End of vacation, returing 15 july", "Special Note": "Book ticket by rail" }))
+
+console.log(editToDo(213026, { "title": "bbk" }))
 
 //  If you want to merge the second object into the first object, instead of creating a new object, you can use Object.assign(). The Object.assign(target, source) function merges the source into the target. 
 // How we edit the object inside the array through  Object.assign()..... in  Object.assign(target, source) there are two peremeter, *first one is target object in whhich we will store the data from the *source object if our id is match then we will change the date if not then we will create new one and store it with existing one. 

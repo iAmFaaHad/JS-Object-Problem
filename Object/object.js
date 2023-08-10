@@ -28,6 +28,7 @@ const employees = {
             age: 13,
             address: {
                 city: 'ctg',
+                
                 country: 'bd'
             }
         }
@@ -545,15 +546,5 @@ function nestyObjManipulation4() {
 console.log(nestyObjManipulation4())
 
 
-    // lexical scope {}
-    // console.log(sum())
-
-    // function sum() {
-    //     return 2 + 2
-
-    // }
-
-    // const sub = () => 2 + 4
-    // console.log(sub())
-    // hoisting in js
+    
 

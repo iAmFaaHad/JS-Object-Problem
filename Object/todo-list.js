@@ -8,7 +8,7 @@ function addToDo(inputObject) {
     toDoList.push(inputObject);
     return inputObject
 }
-
+console.log(toDoList)
 const inputToList1 = {
     "title": "Assignment Submission",
     "description": "Assignment must be submited between 7 july"
@@ -95,3 +95,4 @@ removeToDo(213024)
 editToDo(213023, { "description": "book ticket for going home on 10 july by air, my flight should be on early morning", "title": "Horrah! Going Home" })
 console.log(viewToDoList())
 editToDo(213026, { "title": "bbk" })
+console.log(window)
